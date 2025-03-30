@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sweetcorn Delights - Taste the Magic of Sweetcorn!</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">Sweetcorn Delights</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#recipes">Recipes</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="nav-icons">
+                <div class="cart-icon" onclick="toggleCart()">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </div>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Cart Modal -->
+    <div class="cart-modal" id="cartModal">
+        <div class="cart-content">
+            <div class="cart-header">
+                <h3>Your Cart</h3>
+                <button class="close-cart" onclick="toggleCart()">&times;</button>
+            </div>
+            <div class="cart-items" id="cartItems">
+                <!-- Cart items will be added here dynamically -->
+            </div>
+            <div class="cart-total">
+                <div class="bill-details">
+                    <div class="bill-row">
+                        <span>Subtotal:</span>
+                        <span id="subtotal">₹0</span>
+                    </div>
+                    <div class="bill-row">
+                        <span>GST (5%):</span>
+                        <span id="gst">₹0</span>
+                    </div>
+                    <div class="bill-row">
+                        <span>Service Tax (5%):</span>
+                        <span id="serviceTax">₹0</span>
+                    </div>
+                    <div class="bill-row total-row">
+                        <span>Total Amount:</span>
+                        <span id="cartTotal">₹0</span>
+                    </div>
+                </div>
+                <button class="checkout-btn">Proceed to Checkout</button>
+            </div>
+        </div>
+    </div>
+
+    <main>
+        <section id="hero" class="hero">
+            <div class="hero-content">
+                <h1>Taste the Magic of Sweetcorn!</h1>
+                <p>Discover our collection of mouthwatering sweetcorn recipes</p>
+                <a href="#recipes" class="cta-button">Explore Recipes</a>
+            </div>
+        </section>
+
+        <section id="featured-recipes" class="featured-recipes">
+            <h2>Featured Recipes</h2>
+            
+            <div class="recipe-category">
+                <h3>Classic Sweetcorn Dishes</h3>
+                <div class="recipe-grid">
+                    <div class="recipe-card">
+                        <img src="https://www.vegrecipesofindia.com/wp-content/uploads/2010/02/buttered-corn-recipe-18a.jpg" alt="Butter Sweetcorn">
+                        <h3>Butter Sweetcorn</h3>
+                        <p>Classic buttered corn with a hint of black pepper</p>
+                        <div class="price">₹120</div>
+                        <button class="add-to-cart" onclick="addToCart(this, 'Butter Sweetcorn', 120)">Add to Cart</button>
+                    </div>
+                    <div class="recipe-card">
+                        <img src="https://www.lordbyronskitchen.com/wp-content/uploads/2024/03/2.jpg" alt="Cheese Corn">
+                        <h3>Cheese Corn</h3>
+                        <p>Melted cheese with sweet corn kernels</p>
+                        <div class="price">₹150</div>
+                        <button class="add-to-cart" onclick="addToCart(this, 'Cheese Corn', 150)">Add to Cart</button>
+                    </div>
+                    <div class="recipe-card">
+                        <img src="https://vegecravings.com/wp-content/uploads/2018/10/Masala-Corn-Recipe-Step-By-Step-Instructions-8.jpg" alt="Masala Corn">
+                        <h3>Masala Corn</h3>
+                        <p>Spiced corn with Indian masala blend</p>
+                        <div class="price">₹130</div>
+                        <button class="add-to-cart" onclick="addToCart(this, 'Masala Corn', 130)">Add to Cart</button>
+                    </div>
+                    <div class="recipe-card">
+                        <img src="https://food.fnr.sndimg.com/content/dam/images/food/fullset/2016/6/12/3/FNM070116_Grilled-Lemon-Pepper-Corn-recipe_s4x3.jpg.rend.hgtvcom.616.462.suffix/1466728602511.webp" alt="Grilled Lemon-Pepper Corn">
+                        <h3>Grilled Lemon-Pepper Corn</h3>
+                        <p>Grilled corn with zesty lemon and black pepper</p>
+                        <div class="price">₹140</div>
+                        <button class="add-to-cart" onclick="addToCart(this, 'Grilled Lemon-Pepper Corn', 140)">Add to Cart</button>
+                    </div>
+                    <div class="recipe-card">
+                        <img src="https://thatdeliciousdish.com/wp-content/uploads/2019/03/Crispy-babycorn.jpg" alt="Crispy Chilli Garlic Baby Corn">
+                        <h3>Crispy Chilli Garlic Baby Corn</h3>
+                        <p>Crispy baby corn with spicy garlic sauce</p>
+                        <div class="price">₹160</div>
+                        <button class="add-to-cart" onclick="addToCart(this, 'Crispy Chilli Garlic Baby Corn', 160)">Add to Cart</button>
+                    </div>
+                    <div class="recipe-card">
+                        <img src="https://sundaywithachanceofmeatballs.com/wp-content/uploads/2016/05/image5.jpeg" alt="Herbed Corn with Olive Oil">
+                        <h3>Herbed Corn with Olive Oil</h3>
+                        <p>Fresh corn tossed with herbs and extra virgin olive oil</p>
+                        <div class="price">₹170</div>
+                        <button class="add-to-cart" onclick="addToCart(this, 'Herbed Corn with Olive Oil', 170)">Add to Cart</button>
+                    </div>
+                    <div class="recipe-card">
+                        <img src="https://img-global.cpcdn.com/recipes/a2d60b5a1686b6ae/1200x630cq70/photo.jpg" alt="Schezwan Corn">
+                        <h3>Schezwan Corn</h3>
+                        <p>Spicy Indo-Chinese style corn with schezwan sauce</p>
+                        <div class="price">₹140</div>
+                        <button class="add-to-cart" onclick="addToCart(this, 'Schezwan Corn', 140)">Add to Cart</button>
+                    </div>
+                    <div class="recipe-card">
+                        <img src="https://i.ytimg.com/vi/fj05qMM4tqw/maxresdefault.jpg" alt="Sweetcorn with Mint & Chaat Masala">
+                        <h3>Sweetcorn with Mint & Chaat Masala</h3>
+                        <p>Fresh corn with mint leaves and tangy chaat masala</p>
+                        <div class="price">₹130</div>
+                        <button class="add-to-cart" onclick="addToCart(this, 'Sweetcorn with Mint & Chaat Masala', 130)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="recipe-category">
+                <h3>Main Course</h3>
+                <div class="recipe-grid">
+                    <div class="recipe-card">
+                        <img src="https://dukaan.b-cdn.net/700x700/webp/577471/f47228a4-068c-4350-ac8c-846078501660.png" alt="Corn & Cheese Pizza">
+                        <h3>Corn & Cheese Pizza</h3>
+                        <p>Delicious pizza topped with sweet corn and melted cheese</p>
+                        <div class="price">₹250</div>
+                        <button class="add-to-cart" onclick="addToCart(this, 'Corn & Cheese Pizza', 250)">Add to Cart</button>
+                    </div>
+                    <div class="recipe-card">
+                        <img src="https://i.ytimg.com/vi/wHFPjSED72c/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLD8ReomDKn7njXIgIYWLu8qTo-fGQ" alt="Sweetcorn Fried Rice">
+                        <h3>Sweetcorn Fried Rice</h3>
+                        <p>Flavorful fried rice with sweet corn and vegetables</p>
+                        <div class="price">₹180</div>
+                        <button class="add-to-cart" onclick="addToCart(this, 'Sweetcorn Fried Rice', 180)">Add to Cart</button>
+                    </div>
+                    <div class="recipe-card">
+                        <img src="https://www.funfoodfrolic.com/wp-content/uploads/2020/03/Paneer-Cutlet-Thumbnail.jpg" alt="Corn & Paneer Tikka">
+                        <h3>Corn & Paneer Tikka</h3>
+                        <p>Grilled corn and paneer in spiced yogurt marinade</p>
+                        <div class="price">₹220</div>
+                        <button class="add-to-cart" onclick="addToCart(this, 'Corn & Paneer Tikka', 220)">Add to Cart</button>
+                    </div>
+                    <div class="recipe-card">
+                        <img src="https://i.ytimg.com/vi/DPHfZL1VJKE/maxresdefault.jpg" alt="Corn Stuffed Paratha">
+                        <h3>Corn Stuffed Paratha</h3>
+                        <p>Indian flatbread stuffed with spiced corn mixture</p>
+                        <div class="price">₹160</div>
+                        <button class="add-to-cart" onclick="addToCart(this, 'Corn Stuffed Paratha', 160)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="recipe-category">
+                <h3>Beverages & Desserts</h3>
+                <div class="recipe-grid">
+                    <div class="recipe-card">
+                        <img src="https://i0.wp.com/ricelifefoodie.com/wp-content/uploads/2024/06/mais-con-yelo-Filipino-sweet-corn-dessert.jpg?fit=700%2C1000&ssl=1" alt="Sweetcorn Milkshake">
+                        <h3>Sweetcorn Milkshake</h3>
+                        <p>Sweet and creamy corn milkshake with vanilla</p>
+                        <div class="price">₹120</div>
+                        <button class="add-to-cart" onclick="addToCart(this, 'Sweetcorn Milkshake', 120)">Add to Cart</button>
+                    </div>
+                    <div class="recipe-card">
+                        <img src="https://www.allrecipes.com/thmb/iGh9kHORBPDpNTLizBxIBRQZCyg=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/AR-15985-GrandmasCornPudding-DDMFS-4x3-dc8c85c9cefb4ba3b1d0fc3ff41516f3.jpg" alt="Corn Pudding">
+                        <h3>Corn Pudding</h3>
+                        <p>Traditional corn pudding with cream and eggs</p>
+                        <div class="price">₹140</div>
+                        <button class="add-to-cart" onclick="addToCart(this, 'Corn Pudding', 140)">Add to Cart</button>
+                    </div>
+                    <div class="recipe-card">
+                        <img src="https://www.karofoodservice.com/UploadStorage/C/Classic%20Caramel-Corn-16x9.jpg" alt="Caramelized Corn Dessert">
+                        <h3>Caramelized Corn Dessert</h3>
+                        <p>Sweet caramelized corn with cream and nuts</p>
+                        <div class="price">₹150</div>
+                        <button class="add-to-cart" onclick="addToCart(this, 'Caramelized Corn Dessert', 150)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="recipe-category">
+                <h3>Street-Style Corn Dishes</h3>
+                <div class="recipe-grid">
+                    <div class="recipe-card">
+                        <img src="https://princesspinkygirl.com/wp-content/uploads/2020/06/Mexican-Street-Corn-square.jpg" alt="Mexican Street Corn">
+                        <h3>Mexican Street Corn (Elote)</h3>
+                        <p>Grilled corn with mayo, cheese, and chili powder</p>
+                        <div class="price">₹160</div>
+                        <button class="add-to-cart" onclick="addToCart(this, 'Mexican Street Corn (Elote)', 160)">Add to Cart</button>
+                    </div>
+                    <div class="recipe-card">
+                        <img src="https://images.immediate.co.uk/production/volatile/sites/30/2022/07/Sweetcorn-fritters-1fefa39.jpg?quality=90&resize=556,505" alt="Corn Pakara">
+                        <h3>Corn Pakora (Corn Fritters)</h3>
+                        <p>Crispy corn fritters with Indian spices</p>
+                        <div class="price">₹130</div>
+                        <button class="add-to-cart" onclick="addToCart(this, 'Corn Pakora (Corn Fritters)', 130)">Add to Cart</button>
+                    </div>
+                    <div class="recipe-card">
+                        <img src="https://www.vegrecipesofindia.com/wp-content/uploads/2014/11/frankie-recipe-4.jpg" alt="Sweetcorn Frankie">
+                        <h3>Sweetcorn Frankie (Wraps)</h3>
+                        <p>Spiced corn wrapped in flatbread</p>
+                        <div class="price">₹140</div>
+                        <button class="add-to-cart" onclick="addToCart(this, 'Sweetcorn Frankie (Wraps)', 140)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="recipe-category">
+                <h3>Fusion & Modern Dishes</h3>
+                <div class="recipe-grid">
+                    <div class="recipe-card">
+                        <img src="https://i2.wp.com/www.betterbutter.in/blog/wp-content/uploads/2021/08/1be9ff91-ced3-452b-933b-d1fc40906724-1.jpg?fit=712%2C475&ssl=1" alt="Peri-Peri Corn">
+                        <h3>Peri-Peri Corn</h3>
+                        <p>Spicy peri-peri seasoned corn on the cob</p>
+                        <div class="price">₹170</div>
+                        <button class="add-to-cart" onclick="addToCart(this, 'Peri-Peri Corn', 170)">Add to Cart</button>
+                    </div>
+                    <div class="recipe-card">
+                        <img src="https://www.flavourstreat.com/wp-content/uploads/2018/06/spicy-masala-corn-500x500.jpg" alt="Spicy Lemon Corn">
+                        <h3>Spicy Lemon Corn</h3>
+                        <p>Tangy and spicy corn with lemon zest</p>
+                        <div class="price">₹150</div>
+                        <button class="add-to-cart" onclick="addToCart(this, 'Spicy Lemon Corn', 150)">Add to Cart</button>
+                    </div>
+                    <div class="recipe-card">
+                        <img src="https://i.ytimg.com/vi/4XlptqYaihE/sddefault.jpg" alt="Corn & Spinach Momos">
+                        <h3>Corn & Spinach Momos</h3>
+                        <p>Steamed dumplings with corn and spinach filling</p>
+                        <div class="price">₹160</div>
+                        <button class="add-to-cart" onclick="addToCart(this, 'Corn & Spinach Momos', 160)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="recipe-category">
+                <h3>Soups & Starters</h3>
+                <div class="recipe-grid">
+                    <div class="recipe-card">
+                        <img src="https://www.simplyrecipes.com/thmb/M6F5bXHLWFL4DQd7XDr_ZVaa3i0=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/__opt__aboutcom__coeus__resources__content_migration__simply_recipes__uploads__2006__09__Corn-Chowder-LEAD-5-8da613dc7db14323b2df85d3ea74e08d.jpg" alt="Creamy Corn Chowder">
+                        <h3>Creamy Corn Chowder</h3>
+                        <p>Rich and creamy corn soup with vegetables</p>
+                        <div class="price">₹140</div>
+                        <button class="add-to-cart" onclick="addToCart(this, 'Creamy Corn Chowder', 140)">Add to Cart</button>
+                    </div>
+                    <div class="recipe-card">
+                        <img src="https://realfood.tesco.com/media/images/Chinese-chicken--sweetcorn-soup-recipe-472x310-db05a4dc-9d13-418f-a0a5-4e3bc1012083-0-472x310.jpg" alt="Sweetcorn Soup">
+                        <h3>Sweetcorn Soup</h3>
+                        <p>Light and healthy corn soup with ginger</p>
+                        <div class="price">₹120</div>
+                        <button class="add-to-cart" onclick="addToCart(this, 'Sweetcorn Soup', 120)">Add to Cart</button>
+                    </div>
+                    <div class="recipe-card">
+                        <img src="https://thetravelbible.com/wp-content/uploads/2025/03/Spicy-Mexican-Corn-Bites-Tasty.png" alt="Corn Bites">
+                        <h3>Corn Bites</h3>
+                        <p>Crispy corn nuggets with dipping sauce</p>
+                        <div class="price">₹130</div>
+                        <button class="add-to-cart" onclick="addToCart(this, 'Corn Bites', 130)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="about">
+            <div class="about-content">
+                <h2>About Sweetcorn Delights</h2>
+                <p>We're passionate about bringing you the best sweetcorn recipes. Our collection features both traditional favorites and innovative new ways to enjoy this versatile ingredient.</p>
+            </div>
+        </section>
+
+        <section id="reviews" class="reviews">
+            <h2>Customer Reviews & Ratings</h2>
+            <div class="reviews-container">
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="reviewer-info">
+                            <img src="https://randomuser.me/api/portraits/men/1.jpg" alt="John Doe" class="reviewer-avatar">
+                            <div>
+                                <h4>John Doe</h4>
+                                <div class="rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <span class="review-date">March 15, 2024</span>
+                    </div>
+                    <p class="review-text">"The Butter Sweetcorn is absolutely delicious! The perfect balance of butter and seasoning. Will definitely order again!"</p>
+                    <div class="review-dish">Ordered: Butter Sweetcorn</div>
+                </div>
+
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="reviewer-info">
+                            <img src="https://randomuser.me/api/portraits/women/2.jpg" alt="Sarah Smith" class="reviewer-avatar">
+                            <div>
+                                <h4>Sarah Smith</h4>
+                                <div class="rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <span class="review-date">March 12, 2024</span>
+                    </div>
+                    <p class="review-text">"The Corn & Cheese Pizza was amazing! The combination of sweet corn and melted cheese is perfect. Just wish it was a bit larger!"</p>
+                    <div class="review-dish">Ordered: Corn & Cheese Pizza</div>
+                </div>
+
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="reviewer-info">
+                            <img src="https://randomuser.me/api/portraits/men/3.jpg" alt="Mike Johnson" class="reviewer-avatar">
+                            <div>
+                                <h4>Mike Johnson</h4>
+                                <div class="rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <span class="review-date">March 10, 2024</span>
+                    </div>
+                    <p class="review-text">"The Mexican Street Corn is authentic and delicious! The perfect blend of spices and toppings. Highly recommended!"</p>
+                    <div class="review-dish">Ordered: Mexican Street Corn (Elote)</div>
+                </div>
+
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="reviewer-info">
+                            <img src="https://randomuser.me/api/portraits/women/4.jpg" alt="Emma Wilson" class="reviewer-avatar">
+                            <div>
+                                <h4>Emma Wilson</h4>
+                                <div class="rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <span class="review-date">March 8, 2024</span>
+                    </div>
+                    <p class="review-text">"The Sweetcorn Milkshake is a unique and refreshing treat! Perfect for hot summer days. Would love to try more desserts!"</p>
+                    <div class="review-dish">Ordered: Sweetcorn Milkshake</div>
+                </div>
+            </div>
+            <button class="add-review-btn">Write a Review</button>
+        </section>
+
+        <section id="contact" class="contact">
+            <h2>Get in Touch</h2>
+            <form class="contact-form">
+                <input type="text" placeholder="Name" required>
+                <input type="email" placeholder="Email" required>
+                <textarea placeholder="Message" required></textarea>
+                <button type="submit" class="submit-button">Send Message</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Sweetcorn Delights</h3>
+                <p>Your ultimate destination for sweetcorn recipes</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#recipes">Recipes</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Sweetcorn Delights. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html> 
